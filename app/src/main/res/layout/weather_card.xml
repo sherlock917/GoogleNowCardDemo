@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/weather_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    tools:context=".MainActivity" 
+    android:clickable="true">
+
+    <LinearLayout
+        android:id="@+id/weather_card_frame"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left" >
+
+        <LinearLayout
+            android:id="@+id/weather_icon_frame"
+            android:layout_width="51dp"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/weather_icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/cloudy_morning" />
+        </LinearLayout>
+
+        <!-- 天气卡片 -->
+
+        <LinearLayout
+            android:id="@+id/weather_main_frame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="12.00"
+            android:orientation="vertical" >
+
+            <!-- 天气卡片上部分 -->
+
+            <RelativeLayout
+                android:id="@+id/weather_text_frame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="5.25" >
+
+                <TextView
+                    android:id="@+id/weather_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="广州"
+                    android:textColor="@color/weather_text"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/weather_sub_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/weather_address"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="0dp"
+                    android:text="从化"
+                    android:textColor="@color/weather_vice_text"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/weather_temperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/weather_sub_address"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:gravity="right"
+                    android:paddingBottom="0dp"
+                    android:paddingTop="0dp"
+                    android:text="27℃"
+                    android:textColor="@color/weather_text"
+                    android:textSize="45sp" />
+
+            </RelativeLayout>
+
+            <!-- 天气卡片中部分 -->
+
+            <LinearLayout
+                android:id="@+id/weather_detial_frame"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_marginTop="0dp"
+                android:layout_weight="2.00"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/icon_drop"
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/weather_drop" />
+
+                <TextView
+                    android:id="@+id/weather_humidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="0dp"
+                    android:text="13%"
+                    android:textColor="@color/weather_vice_text2"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:id="@+id/icon_wind"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/weather_wind_power" />
+
+                <TextView
+                    android:id="@+id/weather_wind_power"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="0dp"
+                    android:text="15 MPH"
+                    android:textColor="@color/weather_vice_text2"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <!-- 天气卡片下部分 -->
+
+            <LinearLayout
+                android:id="@+id/weather_list_frame"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="0dp"
+                android:layout_weight="5.40"
+                android:background="#ffffff" >
+
+                <RelativeLayout
+                    android:id="@+id/weather_list1_frame"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/weather_list1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:drawablePadding="5dp"
+                        android:gravity="center"
+                        android:text="MON"
+                        android:textColor="@color/weather_vice_text"
+                        android:textSize="8sp" />
+
+                    <ImageView
+                        android:id="@+id/weather_list1_icon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/weather_list1"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/thunder" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/weather_list2_frame"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/weather_list2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:drawablePadding="5dp"
+                        android:gravity="center"
+                        android:text="TUE"
+                        android:textColor="@color/weather_vice_text"
+                        android:textSize="8sp" />
+
+                    <ImageView
+                        android:id="@+id/weather_list2_icon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/weather_list2"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/rainy_morning" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/weather_list3_frame"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/weather_list3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:drawablePadding="5dp"
+                        android:gravity="center"
+                        android:text="WED"
+                        android:textColor="@color/weather_vice_text"
+                        android:textSize="8sp" />
+
+                    <ImageView
+                        android:id="@+id/weather_list3_icon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/weather_list3"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/cloudy_morning" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/weather_list4_frame"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/weather_list4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:drawablePadding="5dp"
+                        android:gravity="center"
+                        android:text="THU"
+                        android:textColor="@color/weather_vice_text"
+                        android:textSize="8sp" />
+
+                    <ImageView
+                        android:id="@+id/weather_list4_icon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/weather_list4"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/clear_morning" />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/weather_bar_frame"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/weather_bar"
+                android:layout_width="10dp"
+                android:layout_height="fill_parent"
+                android:layout_gravity="right"
+                android:scaleType="fitEnd"
+                android:src="@drawable/weather_card_right" android:contentDescription="TODO"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>
