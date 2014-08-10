@@ -7,6 +7,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
@@ -65,9 +67,9 @@ public class CardHorizontalScrollView extends HorizontalScrollView {
 
     private void detectScroll () {
         int scrollX = getScrollX();
-        if (scrollX < this.scrollDistance - 100) {
+        if (scrollX < this.scrollDistance * 2 / 3) {
             flyOut(0);
-        } else if (scrollX > this.scrollDistance + 100) {
+        } else if (scrollX > this.scrollDistance * 4 / 3) {
             flyOut(1);
         } else {
             scrollBack();
@@ -128,4 +130,5 @@ public class CardHorizontalScrollView extends HorizontalScrollView {
             }
         });
     }
+
 }

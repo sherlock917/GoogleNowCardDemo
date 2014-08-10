@@ -23,25 +23,36 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         LinearLayout mainContainer = (LinearLayout) findViewById(R.id.main_container);
-
-        CardHorizontalScrollView redCard = generateCard(mainContainer, R.layout.red_card, 30, 20);
-        CardHorizontalScrollView greenCard = generateCard(mainContainer, R.layout.green_card, 30, 20);
-        CardHorizontalScrollView blueCard = generateCard(mainContainer, R.layout.blue_card, 30, 20);
+        final CardHorizontalScrollView redCard = generateCard(mainContainer, R.layout.red_card, 30, 20);
+        final CardHorizontalScrollView greenCard = generateCard(mainContainer, R.layout.green_card, 30, 20);
+        final CardHorizontalScrollView blueCard = generateCard(mainContainer, R.layout.blue_card, 30, 20);
         mainContainer.addView(redCard);
         mainContainer.addView(greenCard);
         mainContainer.addView(blueCard);
+        redCard.setVisibility(View.INVISIBLE);
+        greenCard.setVisibility(View.INVISIBLE);
+        blueCard.setVisibility(View.INVISIBLE);
 
-        Animation animation1 = flyIn(500, "bottom");
-        View test1 = redCard;
-        test1.startAnimation(animation1);
+        mainContainer.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                redCard.setVisibility(View.VISIBLE);
+                greenCard.setVisibility(View.VISIBLE);
+                blueCard.setVisibility(View.VISIBLE);
 
-        Animation animation2 = flyIn(750, "bottom");
-        View test2 = greenCard;
-        test2.startAnimation(animation2);
+                Animation animation1 = generateFlyInAnimation(500, "top-left");
+                View test1 = redCard;
+                test1.startAnimation(animation1);
 
-        Animation animation3 = flyIn(1000, "bottom");
-        View test3 = blueCard;
-        test3.startAnimation(animation3);
+                Animation animation2 = generateFlyInAnimation(750, "right-bottom");
+                View test2 = greenCard;
+                test2.startAnimation(animation2);
+
+                Animation animation3 = generateFlyInAnimation(1000, "top-right");
+                View test3 = blueCard;
+                test3.startAnimation(animation3);
+            }
+        }, 2000);
     }
 
 
@@ -81,7 +92,7 @@ public class MainActivity extends Activity {
         return cardScroller;
     }
 
-    public Animation flyIn(int duration, String direction) {
+    public Animation generateFlyInAnimation(int duration, String direction) {
         float x = 0.0f;
         float y = 0.0f;
         String[] directions = direction.split("-");
