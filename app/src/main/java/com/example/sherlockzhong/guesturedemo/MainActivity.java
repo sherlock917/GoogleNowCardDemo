@@ -2,12 +2,17 @@ package com.example.sherlockzhong.guesturedemo;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 
 public class MainActivity extends Activity {
@@ -18,14 +23,25 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         LinearLayout mainContainer = (LinearLayout) findViewById(R.id.main_container);
-        for (int i = 0; i < 10; i++) {
-            CardHorizontalScrollView redCard = generateCard(mainContainer, R.layout.red_card, 30, 20);
-            CardHorizontalScrollView greenCard = generateCard(mainContainer, R.layout.green_card, 30, 20);
-            CardHorizontalScrollView blueCard = generateCard(mainContainer, R.layout.blue_card, 30, 20);
-            mainContainer.addView(redCard);
-            mainContainer.addView(greenCard);
-            mainContainer.addView(blueCard);
-        }
+
+        CardHorizontalScrollView redCard = generateCard(mainContainer, R.layout.red_card, 30, 20);
+        CardHorizontalScrollView greenCard = generateCard(mainContainer, R.layout.green_card, 30, 20);
+        CardHorizontalScrollView blueCard = generateCard(mainContainer, R.layout.blue_card, 30, 20);
+        mainContainer.addView(redCard);
+        mainContainer.addView(greenCard);
+        mainContainer.addView(blueCard);
+
+        Animation animation1 = flyIn(500, "bottom");
+        View test1 = redCard;
+        test1.startAnimation(animation1);
+
+        Animation animation2 = flyIn(750, "bottom");
+        View test2 = greenCard;
+        test2.startAnimation(animation2);
+
+        Animation animation3 = flyIn(1000, "bottom");
+        View test3 = blueCard;
+        test3.startAnimation(animation3);
     }
 
 
@@ -45,7 +61,7 @@ public class MainActivity extends Activity {
         return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
-    private CardHorizontalScrollView generateCard (LinearLayout container, int layoutId, int marginLeftRight, int marginTopBottom) {
+    private CardHorizontalScrollView generateCard(LinearLayout container, int layoutId, int marginLeftRight, int marginTopBottom) {
         Display display = getWindowManager().getDefaultDisplay();
         final int windowWidth = display.getWidth();
         final CardHorizontalScrollView cardScroller = (CardHorizontalScrollView) getLayoutInflater().inflate(R.layout.card_container, container, false);
@@ -63,5 +79,40 @@ public class MainActivity extends Activity {
             }
         });
         return cardScroller;
+    }
+
+    public Animation flyIn(int duration, String direction) {
+        float x = 0.0f;
+        float y = 0.0f;
+        String[] directions = direction.split("-");
+        if (directions.length > 1) {
+            if (directions[1].equalsIgnoreCase("left")) {
+                x = -1.0f;
+            } else if (directions[1].equalsIgnoreCase("top")) {
+                y = -1.0f;
+            } else if (directions[1].equalsIgnoreCase("right")) {
+                x = 1.0f;
+            } else if (directions[1].equalsIgnoreCase("bottom")) {
+                y = 1.0f;
+            }
+        }
+        if (directions[0].equalsIgnoreCase("left")) {
+            x = -1.0f;
+        } else if (directions[0].equalsIgnoreCase("top")) {
+            y = -1.0f;
+        } else if (directions[0].equalsIgnoreCase("right")) {
+            x = 1.0f;
+        } else if (directions[0].equalsIgnoreCase("bottom")) {
+            y = 1.0f;
+        }
+        TranslateAnimation animation = new
+                TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT, x,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, y,
+                Animation.RELATIVE_TO_PARENT, 0.0f);
+        animation.setInterpolator(new DecelerateInterpolator());
+        animation.setDuration(duration);
+        return animation;
     }
 }

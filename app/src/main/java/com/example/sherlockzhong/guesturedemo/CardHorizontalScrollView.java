@@ -65,9 +65,9 @@ public class CardHorizontalScrollView extends HorizontalScrollView {
 
     private void detectScroll () {
         int scrollX = getScrollX();
-        if (scrollX < this.scrollDistance / 2) {
+        if (scrollX < this.scrollDistance - 100) {
             flyOut(0);
-        } else if (scrollX > this.scrollDistance * 3 / 2) {
+        } else if (scrollX > this.scrollDistance + 100) {
             flyOut(1);
         } else {
             scrollBack();
@@ -88,8 +88,6 @@ public class CardHorizontalScrollView extends HorizontalScrollView {
                 self.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Animation slideUp = AnimationUtils.loadAnimation(self.getContext(), R.anim.slide_up);
-                        self.startAnimation(slideUp);
                         final LinearLayout cardContainer = (LinearLayout) self.findViewById(R.id.card_container);
                         self.removeView(cardContainer);
                         final LinearLayout mainContainer = (LinearLayout) self.getParent();

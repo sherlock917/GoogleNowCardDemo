@@ -8,7 +8,7 @@
         android:fromYScale="1.0"
         android:toYScale="0.1"
         android:pivotX="50%p"
-        android:pivotY="50%p"
+        android:pivotY="0%p"
         android:duration="@android:integer/config_mediumAnimTime"/>
 
 </set>
