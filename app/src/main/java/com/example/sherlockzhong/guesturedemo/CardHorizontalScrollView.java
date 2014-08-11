@@ -9,11 +9,13 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 /**
  * Created by SherlockZhong on 7/28/14.
@@ -21,6 +23,7 @@ import android.widget.ScrollView;
 public class CardHorizontalScrollView extends HorizontalScrollView {
 
     private int scrollDistance = 0;
+    private String cardID = "";
 
     public CardHorizontalScrollView (Context context) {
         super(context);
@@ -38,6 +41,10 @@ public class CardHorizontalScrollView extends HorizontalScrollView {
 
     public void setScrollDistance (int scrollDistance) {
         this.scrollDistance = scrollDistance;
+    }
+
+    public void setCardID (String id) {
+        this.cardID = id;
     }
 
     private void cardMotionEvent (MotionEvent ev) {
@@ -71,6 +78,8 @@ public class CardHorizontalScrollView extends HorizontalScrollView {
             flyOut(0);
         } else if (scrollX > this.scrollDistance * 4 / 3) {
             flyOut(1);
+        } else if (scrollX == this.scrollDistance) {
+            showPopup();
         } else {
             scrollBack();
         }
@@ -129,6 +138,25 @@ public class CardHorizontalScrollView extends HorizontalScrollView {
                 }, 500);
             }
         });
+    }
+
+    private void showPopup () {
+        View mainContainer = (View) this.getParent();
+        View mainScroller = (View) mainContainer.getParent();
+        View root = (View) mainScroller.getParent();
+        View popup = (View) root.findViewById(R.id.popup_window);
+        TextView text = (TextView) popup.findViewById(R.id.test_text);
+        text.setText(this.cardID);
+        popup.setVisibility(VISIBLE);
+        TranslateAnimation animation = new
+                TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 1.0f,
+                Animation.RELATIVE_TO_PARENT, 0.0f);
+        animation.setInterpolator(new DecelerateInterpolator());
+        animation.setDuration(500);
+        popup.startAnimation(animation);
     }
 
 }

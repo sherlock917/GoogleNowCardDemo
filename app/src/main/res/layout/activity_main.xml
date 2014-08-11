@@ -32,4 +32,31 @@
         android:text="undo"
         android:visibility="invisible"/>
 
+    <LinearLayout
+        android:id="@+id/popup_window"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:clickable="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
+            android:padding="20dp"
+            android:background="#333">
+
+            <TextView
+                android:id="@+id/test_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#fff"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
 </RelativeLayout>

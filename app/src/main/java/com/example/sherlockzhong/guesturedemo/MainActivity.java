@@ -2,17 +2,16 @@ package com.example.sherlockzhong.guesturedemo;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 
 
 public class MainActivity extends Activity {
@@ -26,6 +25,9 @@ public class MainActivity extends Activity {
         final CardHorizontalScrollView redCard = generateCard(mainContainer, R.layout.red_card, 30, 20);
         final CardHorizontalScrollView greenCard = generateCard(mainContainer, R.layout.green_card, 30, 20);
         final CardHorizontalScrollView blueCard = generateCard(mainContainer, R.layout.blue_card, 30, 20);
+        redCard.setCardID("red red red");
+        greenCard.setCardID("green green green");
+        blueCard.setCardID("blue blue blue");
         mainContainer.addView(redCard);
         mainContainer.addView(greenCard);
         mainContainer.addView(blueCard);
@@ -53,6 +55,23 @@ public class MainActivity extends Activity {
                 test3.startAnimation(animation3);
             }
         }, 2000);
+
+        final LinearLayout popup = (LinearLayout) findViewById(R.id.popup_window);
+        popup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TranslateAnimation animation = new
+                        TranslateAnimation(
+                        Animation.RELATIVE_TO_PARENT, 0.0f,
+                        Animation.RELATIVE_TO_PARENT, 0.0f,
+                        Animation.RELATIVE_TO_PARENT, 0.0f,
+                        Animation.RELATIVE_TO_PARENT, 1.0f);
+                animation.setInterpolator(new DecelerateInterpolator());
+                animation.setDuration(500);
+                popup.startAnimation(animation);
+                view.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 
 
