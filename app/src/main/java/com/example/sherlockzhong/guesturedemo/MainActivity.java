@@ -1,6 +1,7 @@
 package com.example.sherlockzhong.guesturedemo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.Menu;
@@ -88,7 +89,12 @@ public class MainActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        return id == R.id.action_settings || super.onOptionsItemSelected(item);
+        if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private CardHorizontalScrollView generateCard(LinearLayout container, int layoutId, int marginLeftRight, int marginTopBottom) {
